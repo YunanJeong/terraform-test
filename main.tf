@@ -28,10 +28,12 @@ provider "aws" {
 # EC2 instance의 ID는 "aws_instance.app_server"가 됨
 resource "aws_instance" "app_server" {
   # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2022-04-20
-  ami           = "ami-063454de5fe8eba79"
+  ami           = var.default_ami
   instance_type = "t2.micro"
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = var.instance_name
+    Owner = var.instance_owner
+    Service = var.instance_service
   }
 }
