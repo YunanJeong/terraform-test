@@ -1,6 +1,10 @@
 # terraform-test
 terraform aws example
 
+## 요구사항
+- awscli가 설치 및 세팅되어있어야 함.
+- awscli에 등록된 access & secret key를 통해, terraform이 aws계정을 식별하고 인스턴스 띄운다.
+
 ## 사용법
 - 해당경로에서,
     - `$terraform init`
