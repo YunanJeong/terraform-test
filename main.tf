@@ -29,11 +29,7 @@ provider "aws" {
 resource "aws_instance" "app_server" {
   # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2022-04-20
   ami           = var.default_ami
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
 
-  tags = {
-    Name = var.instance_name
-    Owner = var.instance_owner
-    Service = var.instance_service
-  }
+  tags = var.tags
 }

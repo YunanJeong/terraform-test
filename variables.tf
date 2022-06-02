@@ -6,7 +6,7 @@
 # 관례적으로는 다음과 같이 쓸 수 있다.
 ## variable.tf에서는 변수의 '존재'만 표기하고,
 ## variable.tfvars에서 값을 할당한다.
-### => 이 경우, tf파일은 git commit 해주고,  tfvars파일은 git commit 하면 안됨)
+### => 이 경우, tf파일은 git commit 해주고,  tfvars파일은 git commit 하면 안된다.
 
 variable "default_ami"{
   # 기본 우분투
@@ -15,18 +15,17 @@ variable "default_ami"{
   default = "ami-063454de5fe8eba79"
 }
 
-variable "instance_name" {
-  description = "Value of the Name tag for the EC2 instance"
-  type        = string
-  default     = "yunan-test-terraform"
+variable "instance_type" {
+  type = string
+  default = "t2.micro"
 }
 
-variable "instance_owner" {
-    type = string
-    default = "xxxxx@gmail.com"
-}
-
-variable "instance_service"{
-    type = string
-    default = "tag-service"
+variable "tags"{
+    description = "instance tags"
+    type = map(string)
+    default = ({
+      Name = "yunan-test-terraform-defaultname"
+      Owner = "xxxxx@gmail.com"
+      Service = "tag-Service"
+    })
 }
