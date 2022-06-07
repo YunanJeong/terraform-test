@@ -13,7 +13,7 @@ terraform aws example
         - 변경될 내역을 미리 확인
     - `$terraform apply`
         - 코드 실행하여 실제 인프라에 적용
-    - `$terraform apply -var-file="varfile.tfvars"`
+    - `$terraform apply -var-file="{설정파일명}.tfvars"`
         - 변수, config 정보 등이 담긴 tfvars 파일을 반영하여 실행
     - `$terraform apply -var='{변수명}={값}'`
         - 특정 변수만 변경하여 실행
