@@ -23,13 +23,49 @@ provider "aws" {
   region  = "ap-northeast-2" # seoul region
 }
 
+# 보안그룹 생성 or 수정
+resource "aws_security_group" "sgroup"{
+  name = var.sgroup_name
+
+  # Inbound Rule 1
+  ingress {
+    # from, to로 포트 허용 범위를 나타낸다.
+    from_port = 22
+    to_port = 22
+    description = "ssh"
+    protocol = "tcp"
+
+    # 허용 소스 IP를 지정한다. cidr_blocks에는 리스트가 할당돼야한다.
+    # 리스트에 맞게 보안 rule이 각각 추가된다.
+    cidr_blocks = var.cidr_blocks_list
+  }
+
+  # Inbound Rule 2
+  ingress {
+    from_port = 1433
+    to_port = 1433
+    description = "db connection"
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Outbound Rule 1 (아래 예시는 설정하지 않은것과 같은, 전체 허용 표기법이다.)
+  egress{
+    protocol  = "-1"
+    from_port = 0
+    to_port   = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 # my resource
 # aws_instance는 리소스타입, app_server는 리소스네임
 # EC2 instance의 ID는 "aws_instance.app_server"가 됨
 resource "aws_instance" "app_server" {
   ami           = var.default_ami
   instance_type = var.instance_type
-  #security_groups = [aws_security_group.kafka.name]
+  # security_groups = [var.sgroup_name] # 기존 등록된 보안그룹도 사용가능하다.
+  security_groups = [aws_security_group.sgroup.name]
   tags = var.tags
   key_name = var.key_pair_name
 
