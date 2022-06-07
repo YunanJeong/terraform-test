@@ -27,9 +27,25 @@ provider "aws" {
 # aws_instance는 리소스타입, app_server는 리소스네임
 # EC2 instance의 ID는 "aws_instance.app_server"가 됨
 resource "aws_instance" "app_server" {
-  # Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2022-04-20
   ami           = var.default_ami
   instance_type = var.instance_type
-
+  #security_groups = [aws_security_group.kafka.name]
   tags = var.tags
+  key_name = var.key_pair_name
+
+  # remote-exec를 위한 ssh connection 셋업
+  connection {
+    type = "ssh"
+    host = self.public_ip
+    user = "ubuntu"
+    private_key = file(var.private_key_path)
+    agent = false
+  }
+  # 실행된 원격 인스턴스에서 수행할 cli명령어
+  provisioner "remote-exec" {
+    inline = [
+      "cloud-init status --wait", # cloud-init이 끝날 떄 까지 기다린다. 에러 예방 차원에서 항상 써준다.
+      "mkdir test-remote-exec"
+    ]
+  }
 }

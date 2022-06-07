@@ -17,3 +17,4 @@ output "instance_tags_info" {
   description = "Instance Tags"
   value = aws_instance.app_server.tags
 }
+
