@@ -8,7 +8,6 @@
 # - variable.tfvars에서 config 내용을 기술한다.
 # => 이 경우, tf파일은 git commit 해주고,  tfvars파일은 git commit 하면 안된다.
 
-# 항상 tfvars에서 값을 가져올 경우, variable 블락 안에서 type, default 등을 명시할 필요는 없다.
 
 variable "default_ami"{
   # 기본 우분투
@@ -50,4 +49,26 @@ variable "sgroup_name"{
 variable "cidr_blocks_list"{
   type = list(string)
   description = "List of Allowed Source IP in Security Group"
+}
+
+################################################
+# Windows SQL Server
+# 기본 윈도우서버 + MSSQL
+variable "windows_ami"{
+  description = "Microsoft Windows Server 2019 Full Locale English with SQL Standard 2019 AMI provided by Amazon"
+  type = string
+  default = "ami-07b8e1b00269f1a3c"
+}
+variable "windows_tags"{}
+variable "windows_instance_type"{
+  description = "windows mssql server needs m5.xlarge"
+  type = string
+  default = "m5.xlarge"
+}
+variable "windows_server_user" {}
+variable "windows_server_passwd" {}
+variable "db_user" {}
+variable "db_passwd" {}
+variable "db_port" {
+  default = 1433
 }
