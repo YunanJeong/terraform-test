@@ -1,5 +1,5 @@
 # terraform-test
-terraform aws example
+Terraform Example(AWS)
 
 ## 요구사항
 - awscli가 설치 및 세팅되어있어야 함.
