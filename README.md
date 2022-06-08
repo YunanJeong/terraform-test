@@ -11,6 +11,8 @@ Terraform Example(AWS)
         - 필요한 provider를 다운로드 받음
     - `$terraform plan`
         - 변경될 내역을 미리 확인
+
+
     - `$terraform apply`
         - 코드 실행하여 실제 인프라에 적용
     - `$terraform apply -var-file="{설정파일명}.tfvars"`
@@ -21,6 +23,8 @@ Terraform Example(AWS)
     - `$terraform apply -auto-approve`
         - apply시, 관리자의 최종승인 yes 입력이 필요하다.
         - `-auto-approve`는 이를 생략시키는 옵션 (자동화할 때 쓸 필요성있음)
+
+
     - `$terraform destroy`
         - 현재경로의 테라폼 프로젝트로 실행중인 인프라 리소스를 모두 종료
 
