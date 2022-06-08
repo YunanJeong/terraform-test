@@ -8,7 +8,7 @@ terraform aws example
 ## 사용법
 - 해당경로에서,
     - `$terraform init`
-        - 필요한 provider를 다운로드 받음.
+        - 필요한 provider를 다운로드 받음
     - `$terraform plan`
         - 변경될 내역을 미리 확인
     - `$terraform apply`
