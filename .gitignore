@@ -2,5 +2,4 @@
 *tfvars*
 *.lock.*
 .terraform*
-test/
 config/
