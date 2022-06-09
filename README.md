@@ -32,4 +32,4 @@ Terraform Example (AWS)
 
 --------------------------------------------------------
 # Terraform으로 Windows Instance에 Connection하는 방법 및 AWS EC2에서 이슈
-[README_windows_connection.md](#./README_windows_connection.md)
+[README_windows_connection.md](#readme_windows_connection.md)
