@@ -29,3 +29,7 @@ Terraform Example (AWS)
 ## 참고
 - 변수 관련 document
     - https://www.terraform.io/language/values/variables
+
+--------------------------------------------------------
+# Terraform으로 Windows Instance에 Connection하는 방법 및 AWS EC2에서 이슈
+[README_windows_connection.md](#/README_windows_connection.md)
