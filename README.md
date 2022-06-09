@@ -34,9 +34,8 @@ Terraform Example (AWS)
 # Terraform으로 Windows Instance에 Connection하는 방법 및 AWS EC2에서 이슈
 - 이 내용은 AWS EC2에서는 이슈가 있어 이용하기 힘든 방법이다.
 - 일반적인 Terraform 사용시 이용가능한 방법을 남긴다.
-
 - Connection 및 remote-exec와 관련된 변수 문서
-    -`https://www.terraform.io/language/resources/provisioners/connection
+    -https://www.terraform.io/language/resources/provisioners/connection
 
 - terraform에서 ssh연결 및 remote-exec를 통한 명령어 전달
     - AWS EC2 Windows Instance는 SSH를 지원하지 않아서 불가능
