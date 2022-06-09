@@ -29,3 +29,44 @@ Terraform Example (AWS)
 ## 참고
 - 변수 관련 document
     - https://www.terraform.io/language/values/variables
+
+--------------------------------------------------------
+# Terraform으로 Windows Instance에 Connection하는 방법 및 AWS EC2에서 이슈
+- terraform에서 ssh연결 및 remote-exec를 통한 명령어 전달
+    - AWS EC2 Windows Instance는 SSH를 지원하지 않아서 불가능
+    - EC2 외에는 아래 방법 사용
+    ```
+    resource "aws_instance" "windows_server" {
+      ...
+      key_name = var.key_pair_name
+      ...
+
+    # remote-exec를 위한 connection 셋업
+    connection {
+        ...
+        // Warning: Windows EC2 Instance doesn't support SSH connection.
+        type = "ssh"
+        target_platform = "windows" # ssh 전용
+        private_key = file(var.private_key_path) # ssh 전용
+        ...
+    }
+    ```
+- terrafrom에서 winrm연결 및 remote-exec를 통한 명령어 전달
+    - EC2에서 제대로 동작하지 않는 이슈가 있음 (무한 연결대기)
+    - EC2 외에는 아래 방법 사용
+    ```
+    resource "aws_instance" "windows_server" {
+      ...
+      key_name = var.key_pair_name
+      get_password_data = true
+      ...
+
+    # remote-exec를 위한 connection 셋업
+    connection {
+      ...
+      password = rsadecrypt(self.password_data, file(var.private_key_path))
+      ...
+    }
+    ```
+# Terraform에서 AWS EC2 Windows Instance에 연결하는 방법
+    - terraform aws_instance 리소스 아래의 user_data 변수를 사용해서 스크립트를 전달하는 방식으로 가능.
