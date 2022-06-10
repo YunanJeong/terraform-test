@@ -8,7 +8,9 @@
 # - variable.tfvars에서 config 내용을 기술한다.
 # => 이 경우, tf파일은 git commit 해주고,  tfvars파일은 git commit 하면 안된다.
 
-
+######################################################################
+# Set Up Ubuntu Example Server
+######################################################################
 variable "default_ami"{
   # 기본 우분투
   description = "Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2022-04-20"
@@ -51,8 +53,9 @@ variable "cidr_blocks_list"{
   description = "List of Allowed Source IP in Security Group"
 }
 
-################################################
-# Windows SQL Server
+######################################################################
+#Set Up Windows SQL Server
+######################################################################
 # 기본 윈도우서버 + MSSQL
 variable "windows_ami"{
   description = "Microsoft Windows Server 2019 Full Locale English with SQL Standard 2019 AMI provided by Amazon"
@@ -65,8 +68,6 @@ variable "windows_instance_type"{
   type = string
   default = "m5.xlarge"
 }
-variable "windows_server_user" {}
-variable "windows_server_passwd" {}
 variable "db_user" {}
 variable "db_passwd" {}
 variable "db_port" {

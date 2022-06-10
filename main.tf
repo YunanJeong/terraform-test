@@ -75,7 +75,7 @@ resource "aws_security_group" "allow_windows_conn"{
   }
   ingress {
     from_port = 5985
-    to_port = 5985
+    to_port = 5986
     description = "WinRM"
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
@@ -116,16 +116,16 @@ resource "aws_instance" "app_server" {
 ######################################################################
 #Set Up Windows SQL Server
 ######################################################################
-/*
+//템플릿파일 내 변수에 값 할당하기
 data "template_file" "initdb" {
-  template = file("${path.module}/initdb.tpl")
+  template = file("${path.module}/scripts/init_db.sql")
   vars = {
     user = var.db_user,
     passwd = var.db_passwd,
     port = var.db_port
   }
 }
-*/
+  #user_data = data.template_file.win_user_data.rendered
 
 resource "aws_instance" "windows_server" {
   ami = var.windows_ami
@@ -133,25 +133,39 @@ resource "aws_instance" "windows_server" {
   security_groups = [aws_security_group.sgroup.name, aws_security_group.allow_windows_conn.name]
   tags = var.windows_tags
   key_name = var.key_pair_name
-  ##############get_password_data = true
 
-  # remote-exec를 위한 connection 셋업
+  # user_data는 서버 초기 구성시 사용될 수 있는 메타데이터를 의미한다.(cmd스크립트)
+  # AWS에서는 user_data를 활용한 winrm 초기설정이 추가로 필요하다.
+  get_password_data = true # true이면, password_data 값을 terraform으로 가져온다.
+  user_data_replace_on_change = true
+  user_data = file("${path.module}/scripts/win_user_data.ps1")
+
+  # remote-exec, file 등 여타 provisioner를 위한 connection 셋업
   connection {
-    type = "winrm"
+    //https://www.terraform.io/language/resources/provisioners/connection
+    # winrm connection에는 key파일 대신 password를 사용해야 한다.
+    # password_data를 decrypted해서 password로 사용한다.
     host = self.public_ip
-    user = var.windows_server_user
-    private_key = file(var.private_key_path)
-    #password = var.windows_server_passwd
-    timeout = "3m"
+    timeout = "10m"
+    type = "winrm"
+    user = "Administrator"
+    password = rsadecrypt(self.password_data, file(var.private_key_path))
   }
 
-  /*
-  # 실행된 원격 인스턴스에서 수행할 cli명령어
+  # provisioner 끼리는 기술 순서대로 실행됨
+  # 원격 인스턴스로 파일 전송
+  provisioner "file" {
+    content = file("${path.module}/scripts/init_db.sql")
+    destination = "C:\\Users\\scripts\\init_db.sql"  # 원격 인스턴스 내 주소
+  }
+
+  # 실행된 원격 인스턴스에서 수행할 cmd명령어
   provisioner "remote-exec" {
     inline = [
-      #"cloud-init status --wait", # cloud-init이 끝날 떄 까지 기다린다. 에러 예방 차원에서 항상 써준다.
-      #"mkdir test-remote-exec"
+      "mkdir C:\\Users\\test-winrm-remote-exec",
+      "timeout 10",                              # 10초 대기. user_data와 충돌방지.
+      "sqlcmd -i C:\\Users\\scripts\\init_db.sql"
     ]
-  }*/
+  }
 
 }

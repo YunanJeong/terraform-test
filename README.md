@@ -1,7 +1,7 @@
 # terraform-test
 Terraform Example (AWS)
 1. EC2 Ubuntu 인스턴스 띄우고 원격 명령어 실행 테스트
-2. EC2 Windows Server(+ SQL Server) 인스턴스 띄우고 DB 테스트
+2. EC2 Windows Server(+ SQL Server) 인스턴스 띄우고 DB 초기화 및 임의데이터 생성
 
 ## 요구사항
 - awscli가 설치 및 세팅되어있어야 함.
