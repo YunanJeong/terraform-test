@@ -155,7 +155,8 @@ resource "aws_instance" "windows_server" {
   # provisioner 끼리는 기술 순서대로 실행됨
   # 원격 인스턴스로 파일 전송
   provisioner "file" {
-    content = file("${path.module}/scripts/init_db.sql")
+    #content = file("${path.module}/scripts/init_db.sql")
+    content = data.template_file.initdb.rendered
     destination = "C:\\Users\\scripts\\init_db.sql"  # 원격 인스턴스 내 주소
   }
 
