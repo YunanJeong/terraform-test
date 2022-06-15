@@ -1,3 +1,7 @@
+#########################################################
+# This is an example file.
+# DO NOT upload your real config file to public git.
+#########################################################
 # "Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2022-04-20"
 # 기본 우분투
 default_ami = "ami-063454de5fe8eba79"
