@@ -39,3 +39,4 @@ output "win_instance_tags_info" {
   value = aws_instance.windows_server.tags
 }
 
+
