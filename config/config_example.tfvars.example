@@ -2,6 +2,10 @@
 # This is an example file.
 # DO NOT upload your real config file to public git.
 #########################################################
+
+######################################################################
+# Set Up Ubuntu Example Server
+######################################################################
 # "Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2022-04-20"
 # 기본 우분투
 default_ami = "ami-063454de5fe8eba79"
@@ -24,7 +28,9 @@ sgroup_name = "xxxxxx"
 # 보안그룹에서 허용할 소스 IP 목록
 cidr_blocks_list = ["0.0.0.0/0", ]
 
-#####################################
+######################################################################
+#Set Up Windows SQL Server
+######################################################################
 # Microsoft Windows Server 2019 Full Locale English with SQL Standard 2019 AMI provided by Amazon
 # 기본 윈도우서버 + MSSQL
 windows_ami = "ami-07b8e1b00269f1a3c"
@@ -37,3 +43,12 @@ windows_tags = {
 db_user = "dbuser~~~~"
 db_passwd = "db_passwd" # 복잡해야함. 안그러면 계정등록 실패
 db_port = "1433"  # 일반적인 db port
+
+######################################################################
+#Set Up Existing Git Server
+######################################################################
+git_info = {
+    user = "git_user_name"
+    token = "git_token" # git pull only
+}
+gitlab_instance = "git_instance_id"
