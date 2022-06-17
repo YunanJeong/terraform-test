@@ -30,7 +30,7 @@ provisioner "remote-exec"{...}
 - `private_key`: ssh 연결시, password 대신 개인키를 사용할 때 사용하는 변수
 
 ## terrafrom에서 winrm연결 및 remote-exec를 통한 명령어 전달
-- EC2 Windows에서 winrm 초기 설정이 제대로 되지 않아 connection 및 provisioner가 동작하지 않는 이슈가 있음 (무한 연결대기)
+- (EC2 Windows에서 winrm 초기 설정이 제대로 되지 않아 connection 및 provisioner가 동작하지 않는 이슈가 있음 (무한 연결대기))
 - EC2 Windows외에는 아래 방법 사용
 ```
 resource "aws_instance" "windows_server" {
