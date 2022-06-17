@@ -55,7 +55,8 @@ connection {
 
 
 # AWS EC2 Windows Instance에 Terraform으로 연결하는 방법 (이 레포지토리에 적용된 방법)
-- resource의 user_data 변수를 활용하여 다음 스크립트가 윈도우 인스턴스 생성시 실행되도록 한다.
+- resource의 user_data 변수를 활용하여, 윈도우 인스턴스 생성시 다음 스크립트가 실행되도록 한다.
+- winrm의 초기설정 과정이다. 이후 provisioner의 remote-exec도 사용가능하다.
 - 인스턴스 실행시 필요한 동작은 가급적 user_data에서 모두 처리한다.
 - Terraform 오피셜로 provisioner는 비권장한다.
     - https://www.terraform.io/language/resources/provisioners/connection
