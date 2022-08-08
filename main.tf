@@ -175,7 +175,7 @@ resource "null_resource" "app_server_code"{
       #"cloud-init status --wait", # cloud-init이 끝날 떄 까지 기다린다.
       "mkdir test_second_remote_exec_by_null_resource",
       "sudo apt update && sudo apt install python-is-python3",
-      "yes | sudo apt install python3-pip",
+      "sudo apt -y remove needrestart && sudo apt install -y python3-pip",
       "git clone https://${var.git_info.user}:${var.git_info.token}@github.com/YunanJeong/terraform-test.git",
     ]
   }
