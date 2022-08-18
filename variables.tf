@@ -66,7 +66,7 @@ variable "windows_tags"{}
 variable "windows_instance_type"{
   description = "windows mssql server needs m5.xlarge"
   type = string
-  default = "m5.xlarge"
+  default = "m5.large"
 }
 variable "db_user" {}
 variable "db_passwd" {}
