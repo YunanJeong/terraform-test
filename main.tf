@@ -175,7 +175,9 @@ resource "null_resource" "app_server_code"{
       #"cloud-init status --wait", # cloud-init이 끝날 떄 까지 기다린다.
       "mkdir test_second_remote_exec_by_null_resource",
       "sudo apt update && sudo apt install python-is-python3",
-      "sudo apt -y remove needrestart && sudo apt install -y python3-pip",
+      "sudo sed -i 's/#$nrconf{restart} = '\"'\"'i'\"'\"';/$nrconf{restart} = '\"'\"'a'\"'\"';/g' /etc/needrestart/needrestart.conf", # needrestart가 대화형(interactive)모드로 켜지지 않도록 설정
+      "sudo apt install -y python3-pip",
+      #"sudo apt -y remove needrestart && sudo apt install -y python3-pip", # needrestart를 그냥 삭제.
       "git clone https://${var.git_info.user}:${var.git_info.token}@github.com/YunanJeong/terraform-test.git",
     ]
   }
