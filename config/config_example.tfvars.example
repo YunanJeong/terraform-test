@@ -33,7 +33,7 @@ cidr_blocks_list = ["0.0.0.0/0", ]
 ######################################################################
 # Microsoft Windows Server 2019 Full Locale English with SQL Standard 2019 AMI provided by Amazon
 # 기본 윈도우서버 + MSSQL
-windows_ami = "ami-07b8e1b00269f1a3c"
+windows_ami = "ami-0351af1449b6abc49"
 windows_tags = {
     Name = "instance_name_win"
     Owner = "xxxxxxxxxx@gmail.com"
