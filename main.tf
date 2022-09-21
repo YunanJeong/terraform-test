@@ -235,7 +235,7 @@ resource "aws_instance" "windows_server" {
   provisioner "remote-exec" {
     inline = [
       "mkdir C:\\Users\\test-winrm-remote-exec",
-      "timeout 15",                              # 15초 대기. user_data와 충돌방지.
+      "ping -n 15 localhost",  # 15초 대기. user_data와 충돌방지.
       "sqlcmd -i C:\\Users\\scripts\\init_db.sql"
     ]
   }
