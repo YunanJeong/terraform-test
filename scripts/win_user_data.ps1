@@ -21,7 +21,7 @@ net start winrm
 ######################################################################
 # MSSQL DB 초기화 관련 설정
 ######################################################################
-# 로그인 인증을 Mixed 로 변경 (2017dms MSSSQL14, 2019는 MSSQL15)
+# 로그인 인증을 Mixed 로 변경 (2017은 MSSSQL14, 2019는 MSSQL15)
 Set-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Microsoft SQL Server\\MSSQL15.MSSQLSERVER\\MSSQLServer' -Name LoginMode -Value 2
 Restart-Service -Force MSSQLSERVER
 
