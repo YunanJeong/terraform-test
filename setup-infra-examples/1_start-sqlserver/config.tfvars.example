@@ -1,0 +1,18 @@
+
+# sqlserver 모듈에 입력될 variables 값 (보안)
+mssql_ami = "ami-0351af1449b6abc49"   # # 기본 윈도우서버 + MSSQL  # # Microsoft Windows Server 2019 Full Locale English with SQL Standard 2019 AMI provided by Amazon
+mssql_instance_type = "m5.large"
+mssql_tags = {
+    Name = "yunan-sql-server-by-terraform"
+    Owner = ""
+    Service = ""
+}
+mssql_db_user = ""
+mssql_db_pass = ""
+mssql_db_port = "1433"
+
+mssql_key_name = "yunan"
+mssql_private_key_path = "/home/ubuntu/.ssh/my-keypair.pem"
+mssql_work_cidr_blocks = ["0.0.0.0/32", ]  # my public ip
+
+
