@@ -1,5 +1,15 @@
 ## tree
-
+├── LICENSE
+├── README.md
+├── modules                           # 테라폼 모듈
+│   ├── ec2                             # ec2모듈
+│   └── sgroup                          # 보안그룹 모듈
+├── setup-infra-examples              # 모듈 사용 예시
+│   ├── 0_start-ubuntu
+│   ├── 1_start-sqlserver
+│   ├── 2_start-ubuntu-and-sqlserver
+│   └── 3_start-multiple-ubuntu
+└── terraform-test                    # 테라폼 코드 + 잡다한 참고용 주석 메모
 
 ## Requirement
 - AWS CLI (AWS_KEY 사전등록)
