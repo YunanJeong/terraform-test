@@ -1,6 +1,0 @@
-*tfstate*
-*tfvars*
-*.lock.*
-.terraform*
-config/*
-!*.example
