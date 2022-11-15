@@ -11,7 +11,7 @@ mssql_db_user = ""
 mssql_db_pass = ""
 mssql_db_port = "1433"
 
-mssql_key_name = "yunan"
+mssql_key_name = "my-keypair"
 mssql_private_key_path = "/home/ubuntu/.ssh/my-keypair.pem"
 mssql_work_cidr_blocks = ["0.0.0.0/32", ]  # my public ip
 
