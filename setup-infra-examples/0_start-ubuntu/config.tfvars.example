@@ -1,0 +1,14 @@
+
+# ubuntu 모듈에 입력될 variables 값 (보안)
+ubuntu_ami = "ami-063454de5fe8eba79"  # Ubuntu 22.04 LTS
+ubuntu_instance_type = "t2.micro"
+ubuntu_tags = {
+    Name = "my-basic-ubuntu-terraform"
+    Owner = "my-mail.gmail.com"
+    Service = "servicecode"
+}
+ubuntu_key_name = "my_keypair"
+ubuntu_private_key_path = "/home/ubuntu/.ssh/my_keypair.pem"
+ubuntu_ssh_cidr_blocks = ["0.0.0.0/32", "x.x.x.x/32"]  # my_pc
+
+
