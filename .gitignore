@@ -3,4 +3,4 @@
 *.lock.*
 .terraform*
 config/*
-!config/config_example.tfvars.example
+!*.example
