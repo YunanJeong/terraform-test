@@ -1,0 +1,28 @@
+
+# ubuntu 모듈에 입력될 variables 값 (보안)
+ubuntu_ami = "ami-063454de5fe8eba79"  # Ubuntu 22.04 LTS
+ubuntu_instance_type = "t2.micro"
+ubuntu_tags = {
+    Name = "yunan-ubuntu-terraform"
+    Owner = "ddd"
+    Service = "ddd"
+}
+
+# sqlserver 모듈에 입력될 variables 값 (보안)
+mssql_ami = "ami-0351af1449b6abc49"   # # 기본 윈도우서버 + MSSQL  # # Microsoft Windows Server 2019 Full Locale English with SQL Standard 2019 AMI provided by Amazon
+mssql_instance_type = "m5.large"
+mssql_tags = {
+    Name = "yunan-sql-server-by-terraform"
+    Owner = "ddd"
+    Service = "ddd"
+}
+mssql_db_user = "ddd"
+mssql_db_pass = "ddd"
+mssql_db_port = "1433"
+
+# ubuntu, sqlserver 공통 variables 값 (보안)
+key_name = "my-keypair"
+private_key_path = "/home/ubuntu/.ssh/my-keypair.pem"
+work_cidr_blocks = ["0.0.0.0/32", ]
+
+
