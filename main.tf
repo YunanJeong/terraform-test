@@ -4,7 +4,7 @@ awscli가 설치되어 있고, Access Key, Secret Key가 등록되어 있어야 
 */
 
 ######################################################################
-# Provisioning
+# Provisioning (없어도 동작 가능. 메타정보를 보다 명시적으로 써주기 위함)
 ######################################################################
 terraform {
   # "terraform registry"에서 제공하는 provider를 찾을 수 있음.
@@ -15,7 +15,6 @@ terraform {
       version = "~> 4.16"
     }
   }
-
   required_version = ">= 0.14.9"
 }
 
