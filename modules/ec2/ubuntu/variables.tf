@@ -7,8 +7,8 @@ variable "tags"{
   description = "instance tags"
   type = map(string)
   default = ({
-    Name = "basic ubuntu by terraform"
-    Owner = "xxxxx@gmail.com"
+    Name    = "basic ubuntu by terraform"
+    Owner   = "xxxxx@gmail.com"
     Service = "tag-Service"
   })
 }
