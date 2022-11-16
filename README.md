@@ -13,6 +13,17 @@
 └── terraform-test                    # 테라폼 코드 + 잡다한 참고용 주석 메모
 ```
 
+## 커맨드
+- 해당경로에서,
+- `$ terraform init`
+  - 초기화: 필요한 provider 다운로드 및 새 module 인식
+- `$ terraform plan -var-file="./config.tfvars"`
+  - syntax, 인프라 구성 등에 문제없는지 apply 전 미리 확인가능
+- `$ terraform apply -var-file="./config.tfvars"`: 인프라 구축
+- `$ terraform destroy -var-file="./config.tfvars"`: 인프라 종료
+- `$ terraform show`: 인프라 정보 출력
+- `$ terraform output`: Output 정보 출력
+
 ## Requirement
 - AWS CLI (AWS_KEY 사전등록)
 - Terraform: v1.2.1 on linux_amd64
