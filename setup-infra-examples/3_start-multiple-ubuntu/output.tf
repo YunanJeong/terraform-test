@@ -1,13 +1,13 @@
 output "id" {
   description = "ID of the EC2 instance"
-  value       = aws_instance.server.id
+  value       = module.ubuntu.id_list
 }
 output "public_ip" {
   description = "Public IP address of the EC2 instance"
-  value       = aws_instance.server.public_ip
+  value       = module.ubuntu.public_ip_list
 }
 output "tags" {
   description = "Instance Tags"
-  value = aws_instance.server.tags
+  value = module.ubuntu.tags_list
 }
 
