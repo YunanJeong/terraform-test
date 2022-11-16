@@ -9,7 +9,7 @@ output "public_ip_list" {
   value       = aws_instance.server[*].public_ip
 }
 output "mutual_cidr_blocks" {
-  description = "public_ip_list 내용에 /32 붙임. 인스턴스 간 보안그룹 생성용"
+  description = "public_ip_list 내용에 /32 붙임"
   value       = [
     for ip in aws_instance.server[*].public_ip:
       replace(ip,ip,"${ip}/32")
