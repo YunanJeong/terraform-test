@@ -40,27 +40,25 @@ resource "aws_security_group" "allows_ssh_more"{
     }
 }
 
-# 보안그룹을 module 기반으로 작성 예시(ubuntu->sqlserver db접근 허용)
+# module을 활용해 보안그룹 작성 예시(ubuntu->sqlserver db접근 허용)
 module "sq-sqlserver"{
     source = "../../modules/sgroup/allows_db"
 
-    sgroup_name = "allows_db_${module.sqlserver.id}"  # module's output
-    allowed_list = ["${module.ubuntu.public_ip}/32"]  # module's output
+    sgroup_name = "allows_db_${module.sqlserver.id}"
+    allowed_list = ["${module.ubuntu.public_ip}/32"]
     db_port = 1433
 }
 
-
-# 보안그룹을 sqlserver instance에 등록
-data "aws_instance" "instance" {
-  instance_id = module.sqlserver.id  # module's output
+# 보안그룹을 인스턴스에 등록(모듈 활용)
+module "register_ssh_sgroup_to_nodes" {
+    source = "../../modules/sgroup/register_sgroup"
+    # Module's Variables
+    sgroup_id        = aws_security_group.allows_ssh_more.id
+    instance_id_list = ["${module.sqlserver.id}"]
 }
-
-resource "aws_network_interface_sg_attachment" "sg_attach_ssh" {
-  security_group_id    = aws_security_group.allows_ssh_more.id
-  network_interface_id = data.aws_instance.instance.network_interface_id
+module "register_db_sgroup_to_nodes" {
+    source = "../../modules/sgroup/register_sgroup"
+    # Module's Variables
+    sgroup_id        = module.sq-sqlserver.id
+    instance_id_list = ["${module.sqlserver.id}"]
 }
-resource "aws_network_interface_sg_attachment" "sg_attach_db" {
-  security_group_id    = module.sq-sqlserver.id  # module's output
-  network_interface_id = data.aws_instance.instance.network_interface_id
-}
-
