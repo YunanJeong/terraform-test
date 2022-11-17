@@ -2,15 +2,21 @@
 ```
 ├── LICENSE
 ├── README.md
-├── modules                           # 테라폼 모듈
-│   ├── ec2                             # ec2모듈
-│   └── sgroup                          # 보안그룹 모듈
-├── setup-infra-examples              # 모듈 사용 예시
-│   ├── 0_start-ubuntu
-│   ├── 1_start-sqlserver
-│   ├── 2_start-ubuntu-and-sqlserver
-│   └── 3_start-multiple-ubuntu
-└── terraform-test                    # 테라폼 코드 + 잡다한 참고용 주석 메모
+├── modules                         # 모듈 모음
+│   ├── ec2                           # 인스턴스 종류 별 구분
+│   │   ├── multi_ubuntu                # 기본 ubuntu N개 및 필요한 보안그룹 등 설정 포함
+│   │   ├── sqlserver                   # mssql 서버 인스턴스 1개 생성
+│   │   └── ubuntu                      # 기본 ubuntu 인스턴스 1개 및 필요한 보안그룹 등 설정 포함
+│   └── sgroup                        # 자주 쓰는 보안그룹 설정을 모듈화
+│       ├── allows_db                   # 보안그룹: db 접근 허용
+│       ├── allows_mutual               # 보안그룹: 다중 인스턴스간 통신 허용
+│       └── register_sgroup             # 보안그룹등록 모듈: 이미 생성된 인스턴스에 보안그룹을 쉽게 등록하기 위해 활용
+├── setup-infra-examples            # 모듈 활용 예시
+│   ├── 0_start-ubuntu                # ubuntu 인스턴스 1개 생성
+│   ├── 1_start-sqlserver             # sqlserver 인스턴스 1개 생성
+│   ├── 2_start-ubuntu-and-sqlserver  # sqlserver 및 보안그룹 모듈 활용, 추가 리소스 작성 등 예시
+│   └── 3_start-multiple-ubuntu       # ubuntu 인스턴스 여러 개 생성
+└── terraform-test                  # 테라폼 코드 + 잡다한 참고용 주석 메모
 ```
 
 ## 커맨드
