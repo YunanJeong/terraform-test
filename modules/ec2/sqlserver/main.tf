@@ -1,12 +1,12 @@
 ######################################################################
 # Set Up Security Groups
 ######################################################################
-resource "aws_security_group" "sgroup"{
-  name = "allows_basic_ubuntu"
+resource "aws_security_group" "allows_basic"{
+  name = "allows_basic_"
   ingress {
     description = "for ssh"
     protocol    = "tcp"
-    cidr_blocks = var.ssh_cidr_blocks # 접속할 PC
+    cidr_blocks = var.work_cidr_blocks # 접속할 PC
     from_port   = 22
     to_port     = 22
   }
@@ -71,7 +71,7 @@ data "template_file" "initdb" {
 resource "aws_instance" "server" {
   ami = var.ami
   instance_type = var.instance_type
-  security_groups = [aws_security_group.allows_ssh.name, aws_security_group.allows_db.name, aws_security_group.allow_winrm.name]
+  security_groups = [aws_security_group.allows_basic.name, aws_security_group.allows_db.name, aws_security_group.allow_winrm.name]
   tags = var.tags
   key_name = var.key_name
 
