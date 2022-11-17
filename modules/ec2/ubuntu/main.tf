@@ -1,7 +1,7 @@
 ######################################################################
 # Set Up Security Groups
 ######################################################################
-resource "aws_security_group" "sgroup"{
+resource "aws_security_group" "allows_basic"{
   name = "allows_basic_ubuntu"
   ingress {
     description = "for ssh"
@@ -36,7 +36,7 @@ resource "aws_instance" "server" {
   instance_type   = var.instance_type
   tags            = var.tags
   key_name        = var.key_name
-  security_groups = [aws_security_group.sgroup.name, ]
+  security_groups = [aws_security_group.allows_basic.name, ]
 }
 
 

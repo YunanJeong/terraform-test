@@ -1,7 +1,7 @@
 ######################################################################
 # Set Up Security Groups
 ######################################################################
-resource "aws_security_group" "sgroup"{
+resource "aws_security_group" "allows_basic"{
   name = "allows_basic_multi-ubuntu"
   ingress {
     description = "for ssh"
@@ -41,7 +41,7 @@ resource "aws_instance" "server" {
 
   key_name        = var.key_name
   security_groups = [
-    aws_security_group.sgroup.name,
+    aws_security_group.allows_basic.name,
   ]
 }
 
