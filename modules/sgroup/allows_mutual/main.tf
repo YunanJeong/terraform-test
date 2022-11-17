@@ -18,13 +18,11 @@ resource "aws_security_group" "allows"{
         ]
     }
 }
-# 인스턴스 간 보안그룹을 각각 인스턴스에 등록
-data "aws_instance" "created_node" {
-    count       = var.node_count  # 반복문 효과
-    instance_id = var.instance_id_list[count.index]  # module's output
-}
-resource "aws_network_interface_sg_attachment" "sg_attach" {
-    count                = var.node_count  # 반복문 효과
-    security_group_id    = aws_security_group.allows.id
-    network_interface_id = data.aws_instance.created_node[count.index].network_interface_id
+
+module "register_sgroup_to_nodes" {
+    source = "../../modules/sgroup/register_sgroup"
+
+    # Module's Variables
+    sgroup_id        = aws_security_group.allows.id
+    instance_id_list = var.instance_id_list
 }
