@@ -1,23 +1,28 @@
 ######################################################################
 # Set Up Security Groups
 ######################################################################
-# 접속할 PC 보안그룹등록
 resource "aws_security_group" "sgroup"{
-  name = "yunan_multi_ubuntu_sgroup"
+  name = "allows_basic_ubuntu"
   ingress {
+    description = "for ssh"
+    protocol    = "tcp"
+    cidr_blocks = var.ssh_cidr_blocks # 접속할 PC
     from_port   = 22
     to_port     = 22
-    description = "for ssh connection"
-    protocol    = "tcp"
-    cidr_blocks = var.ssh_cidr_blocks
   }
-  # Outbound Rule(전체 허용. apt(80,443),ping 등 외부망 이용하려면 필요)
-  # 이를 없애면 인터넷 차단된 IDC와 같은 환경을 표현할 수 있다.
-  egress{
+  ingress {
+    description = "for ping test"
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+  }
+  egress{ # 인스턴스에서 외부로 나가는 request 모두 허용. 이를 없애면 유사 IDC환경 테스트 가능.
+    description = "allows all outbound (apt, ping, ...)"
     protocol  = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
     from_port = 0
     to_port   = 0
-    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -70,9 +75,9 @@ resource "aws_network_interface_sg_attachment" "sg_attach" {
     network_interface_id = data.aws_instance.created_node[count.index].network_interface_id
 }
 
-#################################################
+######################################################################
 # Server Commands (초기 구성)
-#################################################
+######################################################################
 resource "null_resource" "server_remote"{
   # remote-exec를 위한 ssh connection 셋업
   count = var.node_count

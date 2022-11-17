@@ -1,18 +1,31 @@
 ######################################################################
 # Set Up Security Groups
 ######################################################################
-
-resource "aws_security_group" "allows_ssh"{
-  name = "allow_ssh"
-  # Inbound Rule
+resource "aws_security_group" "sgroup"{
+  name = "allows_basic_ubuntu"
   ingress {
-    from_port = 22
-    to_port = 22
-    description = "ssh"
-    protocol = "tcp"
-    cidr_blocks = var.work_cidr_blocks
+    description = "for ssh"
+    protocol    = "tcp"
+    cidr_blocks = var.ssh_cidr_blocks # 접속할 PC
+    from_port   = 22
+    to_port     = 22
+  }
+  ingress {
+    description = "for ping test"
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+  }
+  egress{ # 인스턴스에서 외부로 나가는 request 모두 허용. 이를 없애면 유사 IDC환경 테스트 가능.
+    description = "allows all outbound (apt, ping, ...)"
+    protocol  = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 0
+    to_port   = 0
   }
 }
+
 resource "aws_security_group" "allows_db"{
   name = "allows_db"
   ingress {
