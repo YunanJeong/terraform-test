@@ -42,11 +42,11 @@ resource "aws_security_group" "allows_ssh_more"{
 
 # 보안그룹을 module 기반으로 작성 예시(ubuntu->sqlserver db접근 허용)
 module "sq-sqlserver"{
-    source = "../../modules/sgroup/sg-sqlserver"
+    source = "../../modules/sgroup/allows_db"
 
-    sg_name = "allows_db_${module.sqlserver.id}"  # module's output
+    sgroup_name = "allows_db_${module.sqlserver.id}"  # module's output
     allowed_list = ["${module.ubuntu.public_ip}/32"]  # module's output
-    # db_port = 1433
+    db_port = 1433
 }
 
 

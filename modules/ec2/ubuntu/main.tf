@@ -3,15 +3,20 @@
 ######################################################################
 # 보안그룹 생성 or 수정
 resource "aws_security_group" "sgroup"{
-  name = "yunan_server_sgroup"
-  # Inbound Rule 1
+  name = "yunan_ubuntu_sgroup"
   ingress {
-    # from, to로 포트 허용 범위를 나타낸다.
     from_port   = 22
     to_port     = 22
     description = "for ssh connection"
     protocol    = "tcp"
     cidr_blocks = var.ssh_cidr_blocks
+  }
+  # Outbound Rule (전체 허용. apt(80,443),ping 등 외부망 이용하려면 필요)
+  egress{
+    protocol  = "-1"
+    from_port = 0
+    to_port   = 0
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 

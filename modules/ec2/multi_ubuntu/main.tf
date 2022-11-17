@@ -3,13 +3,21 @@
 ######################################################################
 # 접속할 PC 보안그룹등록
 resource "aws_security_group" "sgroup"{
-  name = "yunan_server_sgroup"
+  name = "yunan_multi_ubuntu_sgroup"
   ingress {
     from_port   = 22
     to_port     = 22
     description = "for ssh connection"
     protocol    = "tcp"
     cidr_blocks = var.ssh_cidr_blocks
+  }
+  # Outbound Rule(전체 허용. apt(80,443),ping 등 외부망 이용하려면 필요)
+  # 이를 없애면 인터넷 차단된 IDC와 같은 환경을 표현할 수 있다.
+  egress{
+    protocol  = "-1"
+    from_port = 0
+    to_port   = 0
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
