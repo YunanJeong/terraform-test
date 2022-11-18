@@ -18,11 +18,3 @@ resource "aws_security_group" "allows"{
         ]
     }
 }
-
-module "register_sgroup_to_nodes" {
-    source = "../../modules/sgroup/register_sgroup"
-
-    # Module's Variables
-    sgroup_id        = aws_security_group.allows.id
-    instance_id_list = var.instance_id_list
-}
