@@ -58,6 +58,7 @@ resource "null_resource" "server_remote"{
     inline = [
       "cloud-init status --wait", # cloud-init이 끝날 떄 까지 기다린다. 에러 예방 차원에서 항상 써준다.
       "mkdir test-make-instance",
+      "sudo apt update",
     ]
   }
 }
