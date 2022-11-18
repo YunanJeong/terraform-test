@@ -14,8 +14,8 @@ resource "aws_security_group" "allows_basic"{
     description = "for ping test"
     protocol    = "icmp"
     cidr_blocks = ["0.0.0.0/0"]
-    from_port   = 0
-    to_port     = 0
+    from_port   = -1
+    to_port     = -1
   }
   egress{
     # 인스턴스에서 외부로 나가는 request 모두 허용. 이를 없애면 유사 IDC환경 테스트 가능.
