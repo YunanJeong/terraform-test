@@ -2,7 +2,7 @@
 # Set Up Security Groups
 ######################################################################
 resource "aws_security_group" "allows_basic"{
-  name = "allows_basic_multi-ubuntu"
+  name = "allows_basic_multi_ubuntu"
   ingress {
     description = "for ssh"
     protocol    = "tcp"
