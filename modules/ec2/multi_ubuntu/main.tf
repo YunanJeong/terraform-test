@@ -21,8 +21,8 @@ resource "aws_security_group" "allows_basic"{
     description = "allows all outbound (apt, ping, ...)"
     protocol  = "-1"
     cidr_blocks = ["0.0.0.0/0"]
-    from_port = -1
-    to_port   = -1
+    from_port = 0
+    to_port   = 0
   }
 }
 
