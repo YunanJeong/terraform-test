@@ -2,7 +2,7 @@
 #
 #############################################################
 module "ubuntu" {
-    source = "../../modules/ec2/multi_ubuntu"
+    source = "../../modules/ec2/multi-ubuntu"
 
     # Module's Variables
     node_count       = var.ubuntu_node_count
