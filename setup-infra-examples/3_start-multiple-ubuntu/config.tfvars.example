@@ -10,6 +10,6 @@ ubuntu_tags = {
 
 ubuntu_key_name = "my-keypair"
 ubuntu_private_key_path = "/home/ubuntu/.ssh/my-keypair.pem"
-ubuntu_ssh_cidr_blocks = ["0.0.0.0/32", ]
+ubuntu_work_cidr_blocks = ["0.0.0.0/32", ]
 
 
