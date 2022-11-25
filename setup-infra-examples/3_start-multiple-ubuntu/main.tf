@@ -11,5 +11,5 @@ module "ubuntu" {
     tags             = var.ubuntu_tags
     key_name         = var.ubuntu_key_name
     private_key_path = var.ubuntu_private_key_path
-    ssh_cidr_blocks  = var.ubuntu_ssh_cidr_blocks
+    work_cidr_blocks = var.ubuntu_work_cidr_blocks
 }
