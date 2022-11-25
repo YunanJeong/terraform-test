@@ -6,6 +6,24 @@
 
 resource "aws_security_group" "allows_basic"{
   name = "allows_basic_ubuntu"
+  ingress{
+    description = "allows all inbounds from my workspace"
+    protocol  = "-1"
+    cidr_blocks = var.work_cidr_blocks
+    from_port = 0
+    to_port   = 0
+  }
+  egress{
+    # 인스턴스에서 외부로 나가는 request 모두 허용. 이를 없애면 유사 IDC환경 테스트 가능.
+    # outbound 허용을 안해줘도 인스턴스에서 외부로 나가는 response는 문제없다.
+    # terraform aws에서 보통 -1이 전체포트를 의미하지만 여기선 0을 쓴다.
+    description = "allows all outbounds (apt, ping, ...)"
+    protocol  = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 0
+    to_port   = 0
+  }
+  /*
   ingress {
     description = "for ssh"
     protocol    = "tcp"
@@ -13,6 +31,7 @@ resource "aws_security_group" "allows_basic"{
     from_port   = 22
     to_port     = 22
   }
+
   ingress {
     # 전체포트는 [-1,-1]로 표기한다. [0,65535]는 에러발생.
     description = "for ping test"
@@ -21,18 +40,5 @@ resource "aws_security_group" "allows_basic"{
     from_port   = -1
     to_port     = -1
   }
-  egress{
-    # 인스턴스에서 외부로 나가는 request 모두 허용. 이를 없애면 유사 IDC환경 테스트 가능.
-    # outbound 허용을 안해줘도 인스턴스에서 외부로 나가는 response는 문제없다.
-    # terraform aws에서 보통 -1이 전체포트를 의미하지만 여기선 0을 쓴다.
-    description = "allows all outbound (apt, ping, ...)"
-    protocol  = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    from_port = 0
-    to_port   = 0
-  }
-  ingress{
-    description = "allows all inbound"
-
-  }
+  */
 }
