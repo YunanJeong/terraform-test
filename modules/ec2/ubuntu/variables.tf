@@ -17,7 +17,7 @@ variable "tags"{
 ######################################################################
 variable "key_name"{  default = "my_keypair_name"  }
 variable "private_key_path"{  default = "/home/ubuntu/.ssh/my_keypair_name.pem"  }
-variable "ssh_cidr_blocks"{
+variable "work_cidr_blocks"{
   description = "인스턴스에서 접속을 허가해줄 로컬PC의 public ip 목록"
   type = list(string)
   default = ["0.0.0.0/32", "x.x.x.x/32"]  # e.g.) my pc's public ip

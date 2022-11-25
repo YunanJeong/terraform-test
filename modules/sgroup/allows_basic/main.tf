@@ -9,7 +9,7 @@ resource "aws_security_group" "allows_basic"{
   ingress {
     description = "for ssh"
     protocol    = "tcp"
-    cidr_blocks = var.ssh_cidr_blocks # 접속할 PC
+    cidr_blocks = var.work_cidr_blocks # 접속할 PC
     from_port   = 22
     to_port     = 22
   }
@@ -30,5 +30,9 @@ resource "aws_security_group" "allows_basic"{
     cidr_blocks = ["0.0.0.0/0"]
     from_port = 0
     to_port   = 0
+  }
+  ingress{
+    description = "allows all inbound"
+
   }
 }
