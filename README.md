@@ -6,7 +6,7 @@
 │   ├── ec2                           # 인스턴스 종류 별 구분
 │   │   ├── multi_ubuntu                # 모듈: 클린 ubuntu N개 및 필요한 보안그룹 등 설정 포함
 │   │   ├── sqlserver                   # 모듈: sqlserver(mssql) 인스턴스 1개
-│   │   └── ubuntu                      # 모듈: 클린 ubuntu 인스턴스 1개 및 필요한 보안그룹 등 설정 포함
+│   │   └── ubuntu                      # 모듈: 클린 ubuntu 1개 및 필요한 보안그룹 등 설정 포함
 │   └── sgroup                        # 자주 쓰는 보안그룹 설정을 모듈화
 │       ├── allows_db                   # 보안그룹: db 접근 허용
 │       ├── allows_mutual               # 보안그룹: 다중 인스턴스간 통신 허용
