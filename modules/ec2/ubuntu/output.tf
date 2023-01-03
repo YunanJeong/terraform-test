@@ -4,7 +4,7 @@
 # output들은 현재 infra나 다른 terraform 프로젝트에서 사용가능하다.
 
 ######################################################################
-# Set Up basic instance
+# instance information
 ######################################################################
 output "id" {
   description = "ID of the EC2 instance"
@@ -19,3 +19,19 @@ output "tags" {
   value = aws_instance.server.tags
 }
 
+######################################################################
+output "public_dns"{
+  value       = aws_instance.server.public_dns
+}
+output "public_hostname_in_ec2"{
+  value = split(".", aws_instance.server.public_dns)[0]
+}
+output "private_dns" {
+  value = aws_instance.server.private_dns
+}
+output "hostname" {
+  value = split(".", aws_instance.server.private_dns)[0]
+}
+output "instance_type" {
+  value = aws_instance.server.instance_type
+}
