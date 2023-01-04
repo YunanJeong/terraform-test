@@ -9,7 +9,7 @@ ubuntu_tags = {
 }
 
 # sqlserver 모듈에 입력될 variables 값 (보안)
-mssql_ami = "ami-0351af1449b6abc49"   # # 기본 윈도우서버 + MSSQL  # # Microsoft Windows Server 2019 Full Locale English with SQL Standard 2019 AMI provided by Amazon
+mssql_ami = "ami-067fa7ca255f667d2"   # # 기본 윈도우서버 + MSSQL  # # Microsoft Windows Server 2019 Full Locale English with SQL Standard 2019 AMI provided by Amazon
 mssql_instance_type = "m5.large"
 mssql_tags = {
     Name = "yunan-sql-server-by-terraform"
