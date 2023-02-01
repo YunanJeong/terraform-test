@@ -9,7 +9,7 @@ module "ubuntu" {
     tags             = var.ubuntu_tags
     key_name         = var.key_name
     private_key_path = var.private_key_path
-    ssh_cidr_blocks  = var.work_cidr_blocks
+    work_cidr_blocks  = var.work_cidr_blocks
 }
 
 module "sqlserver" {
