@@ -11,6 +11,13 @@ resource "aws_security_group" "allows_basic"{
     to_port     = 22
   }
   ingress {
+    description = "allows all apps inbound"
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 3000
+    to_port = 30050
+  }
+  ingress {
     description = "for ping test"
     protocol    = "icmp"
     cidr_blocks = ["0.0.0.0/0"]
