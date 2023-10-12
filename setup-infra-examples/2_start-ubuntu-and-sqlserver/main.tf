@@ -50,14 +50,14 @@ module "sq-sqlserver"{
 }
 
 # 보안그룹을 인스턴스에 등록(모듈 활용)
-module "register_ssh_sgroup_to_nodes" {
-    source = "../../modules/sgroup/register_sgroup"
+module "add_ssh_sgroup_to_nodes" {
+    source = "../../modules/sgroup/add_sgroup"
     # Module's Variables
     sgroup_id        = aws_security_group.allows_ssh_more.id
     instance_id_list = ["${module.sqlserver.id}"]
 }
-module "register_db_sgroup_to_nodes" {
-    source = "../../modules/sgroup/register_sgroup"
+module "add_db_sgroup_to_nodes" {
+    source = "../../modules/sgroup/add_sgroup"
     # Module's Variables
     sgroup_id        = module.sq-sqlserver.id
     instance_id_list = ["${module.sqlserver.id}"]
