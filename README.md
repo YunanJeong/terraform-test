@@ -11,7 +11,7 @@
 │   └── sgroup                        # 자주 쓰는 보안그룹 설정을 모듈화
 │       ├── allows_db                   # 보안그룹: db 접근 허용
 │       ├── allows_mutual               # 보안그룹: 다중 인스턴스간 통신 허용
-│       └── register_sgroup             # 보안그룹등록 모듈: 이미 생성된 인스턴스에 보안그룹을 쉽게 등록하기 위해 활용
+│       └── add_sgroup                  # 보안그룹등록 모듈: 이미 생성된 인스턴스에 보안그룹을 쉽게 등록하기 위해 활용
 ├── setup-infra-examples            # 모듈 활용 예시
 │   ├── 0_start-ubuntu                # ubuntu 인스턴스 1개 생성
 │   ├── 1_start-sqlserver             # sqlserver 인스턴스 1개 생성
