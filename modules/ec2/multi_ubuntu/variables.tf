@@ -1,9 +1,11 @@
 ######################################################################
 # Set Up Basic
 ######################################################################
-variable "node_count"   {default = 1}
-variable "ami"          {default = "ami-063454de5fe8eba79"} # "Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2022-04-20"
-variable "instance_type"{default = "t2.micro"}
+variable "node_count"     {default = 1}
+variable "subnet_id_list" {default = []}
+variable "ami"            {default = "ami-063454de5fe8eba79"} # "Canonical, Ubuntu, 22.04 LTS, amd64 jammy image build on 2022-04-20"
+variable "instance_type"  {default = "t2.micro"}
+variable "volume_size"    {default = 8} # GiB
 variable "tags"{
   type = map(string)
   default = ({
@@ -22,4 +24,3 @@ variable "work_cidr_blocks"{
   type = list(string)
   default = ["0.0.0.0/32", ]  # e.g.) my pc's public ip
 }
-

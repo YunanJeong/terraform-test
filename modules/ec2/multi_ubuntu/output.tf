@@ -4,9 +4,17 @@ output "id_list" {
   # index 자리에 *(asterisk)를 쓰면 value에 전체 list 할당
   value       = aws_instance.server[*].id
 }
+output "subnet_id_list" {
+  description = "AWS Subnet ID"
+  value       = aws_instance.server[*].subnet_id
+}
 output "public_ip_list" {
   description = "Public IP address of the EC2 instance"
   value       = aws_instance.server[*].public_ip
+}
+output "private_ip_list" {
+  description = "Public IP address of the EC2 instance"
+  value       = aws_instance.server[*].private_ip
 }
 output "mutual_cidr_blocks" {
   description = "public_ip_list 내용에 /32 붙임"
@@ -20,4 +28,3 @@ output "tags_list" {
   # 다음과 같이 대괄호 대신 .(dot)으로 써도 전체 list 할당 (위의 대괄호 방식과 동일)
   value = aws_instance.server.*.tags
 }
-
