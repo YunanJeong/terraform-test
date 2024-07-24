@@ -1,13 +1,28 @@
-ubuntu_node_count = 2  # 생성할 인스턴스 개수
+##########################################################################
+# 민감정보 git 커밋 주의
+##########################################################################
 
-ubuntu_ami = "ami-063454de5fe8eba79"  # Ubuntu 22.04 LTS
-ubuntu_instance_type = "t2.micro"
-ubuntu_tags = {
+##########################################################################
+# 인스턴스 기본 정보
+##########################################################################
+node_count = 2  # 생성할 인스턴스 개수
+
+subnet_id_list = ["subnet-xxxxx", ""]  # node_count 수 만큼 할당 필요
+                                       # 미할당: 모든 인스턴스 subnet 자동 선택
+                                       # "": subnet 자동 선택
+
+ami = "ami-063454de5fe8eba79"  # Ubuntu 22.04 LTS # ap-northeast-2
+instance_type = "t3.medium"    # 최소권장 2core, 4GB mem (t3.medium)
+volume_size = 8  # GiB
+tags = {
     Name = "ddd"
     Owner = "my-mail@gmail.com"
     Service = "servicecode"
 }
 
+##########################################################################
+# 인스턴스 접속 설정
+##########################################################################
 ubuntu_key_name = "my-keypair"
 ubuntu_private_key_path = "/home/ubuntu/.ssh/my-keypair.pem"
 ubuntu_work_cidr_blocks = ["0.0.0.0/32", ]
