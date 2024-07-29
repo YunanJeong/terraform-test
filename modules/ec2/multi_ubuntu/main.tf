@@ -44,7 +44,7 @@ resource "aws_instance" "server" {
   ebs_optimized = true # EBS최적화 (인스턴스와 볼륨 간 I/O속도 개선)  # 인스턴스타입 따라 비활성화될 수 있음
   root_block_device {
     volume_size = var.volume_size
-    # delete_on_termination = true  # default
+    delete_on_termination = true  # default
   }
   # ebs_block_device {}             # 추가 볼륨 or 스냅샷 가져올 때 사용
 
